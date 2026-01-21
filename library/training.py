@@ -302,8 +302,8 @@ def approximate_autoc(data_loader, scoring_model, device):
 ####################################################################################
 
 
-def train_ranker(model, train_loader, val_loader, device, lr=3e-4, 
-                 weight_decay=1e-5, max_epochs=50, patience=5, seed=0, plug_in=True):
+def train_ranker(model, train_loader, val_loader, device, lr=3e-4, weight_decay=1e-5, 
+                 max_epochs=50, patience=5, seed=0, plug_in=True, fraction_of_pairs=0.10):
     """
         Expects training loader that yield (x_i, x_j, soft, orth);
         Expects validation loader that yield (x, dr);
@@ -322,10 +322,18 @@ def train_ranker(model, train_loader, val_loader, device, lr=3e-4,
     for epoch in range(1, max_epochs + 1):
         model.train()
         running_loss, n_train = 0.0, 0
+
+        # fix batches
+        total_batches = len(train_loader)
+        max_batches = max(1, int(fraction_of_pairs * total_batches))  # at least 1 batch
     
         # progress
         with tqdm(train_loader, desc=f"Epoch {epoch}/{max_epochs}", leave=False) as pbar:
-            for x_i, x_j, soft, orth in pbar:
+            for b_idx, (x_i, x_j, soft, orth) in enumerate(pbar):
+
+                # stop if fraction_of_pairs reached
+                if b_idx >= max_batches:
+                    break
 
                 # set label
                 if plug_in:
