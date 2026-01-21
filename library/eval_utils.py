@@ -112,7 +112,7 @@ def compute_metrics_cate(eval_df):
         # eval
         row = {"score": score}
         row["autoc"]   = autoc(ranked)
-        row["mean_pv"] = mean_policy_value(ranked)
+        row["policy_value"] = policy_value(ranked)
         ranked = ranked.assign(est=ranked[score])
         row['pehe'] = pehe(ranked)
         results.append(row)
@@ -134,7 +134,7 @@ def compute_metrics_rankers(eval_df):
         # eval
         row = {"score": score}
         row["autoc"]   = autoc(ranked)
-        row["mean_pv"] = mean_policy_value(ranked)
+        row["policy_value"] = policy_value(ranked)
         results.append(row)
     
     # store
