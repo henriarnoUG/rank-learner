@@ -1,0 +1,21 @@
+# Datasets
+/data/datasets/
+
+# Python bytecode
+*.pyc
+*.pyo
+
+# Jupyter / Python cache
+__pycache__/
+.ipynb_checkpoints/
+
+# Logs
+logs/
+
+# Data files
+*.csv
+
+# Model checkpoints
+*.pt
+checkpoints/
+
