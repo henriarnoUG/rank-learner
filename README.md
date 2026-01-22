@@ -10,4 +10,4 @@ This repository contains the code accompanying the paper: ``Rank-Learner: Orthog
 - `rankers.ipynb`: ranking methods, including the proposed **Rank-Learner**.
 
 ## Usage
-The code requires Python 3 and standard scientific Python packages, including PyTorch, NumPy, SciPy, and scikit-learn. Run the notebooks in `data/` to generate datasets, then use the demo notebooks in the root directory to train and evaluate the models.
+The code requires Python 3 and standard scientific Python packages, including PyTorch, NumPy, SciPy, and scikit-learn. Run the notebooks in `data/` to generate datasets, then use the notebooks in the root directory to train and evaluate the models.
